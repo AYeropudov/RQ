@@ -1,0 +1,42 @@
+{% extends 'layout/layout.twig' %}
+{% block content %}
+<h1>LOG</h1>
+{{ lid | raw }}
+    <table class="table table-striped table-condensed table-hover">
+        <tr>
+            <td style="min-width: 150pt">Date :</td><td>{{ obj.createdAt.date }}</td>
+        </tr>
+        <tr>
+            <td>URL :</td><td>{{ obj.URI }}</td>
+        </tr>
+        <tr>
+            <td>Method :</td><td>{{ obj.method }}</td>
+        </tr>
+        <tr>
+            <td>Body :</td>
+            <td>
+                <table class="table table-striped table-condensed table-hover">
+                {% for key,value in obj.body %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>Headers :</td>
+            <td>
+                <table class="table table-striped table-condensed table-hover">
+                    {% for key,value in obj.headers %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+    </table>
+{% endblock content %}

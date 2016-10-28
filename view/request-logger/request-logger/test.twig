@@ -1,0 +1,30 @@
+{% extends 'layout/layout.twig' %}
+{% block content %}
+    <h1>Логи пользователей</h1>
+    {#{{ logs | raw }}#}
+    {{ form(form) }}
+    <table class="table table-condensed table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Date</th>
+            <th>URL</th>
+            <th>METHOD</th>
+            <th>GO TO ></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for log in logs %}
+            <tr>
+                <td>{{ log.userID }}</td>
+                <td>{{ log.createdAt.date }}</td>
+                <td>{{ log.URI }}</td>
+                <td>{{ log.method }}</td>
+                <td><a href="requestlogger/view/{{ log.id }}" target="_blank">more...>>></a></td>
+            </tr>
+        {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+    {{ paginatorODM('requestlogger', paginator) }}
+{% endblock content %}
